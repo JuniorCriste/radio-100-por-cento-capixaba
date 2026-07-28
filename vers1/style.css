@@ -1,0 +1,115 @@
+:root {
+   /* --bg-color: #000000; */
+    --text-main: #ffffff;
+    --text-sub: #b3b3b3;
+    --accent: #1db954;
+}
+
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: 'Segoe UI', Roboto, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-main);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+#bg-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    filter: blur(60px) brightness(0.3);
+    transform: scale(1.4);
+    z-index: -1;
+    transition: background-image 1.5s ease;
+}
+
+.main-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 25px;
+}
+
+.player-container {
+    background-color: rgba(255, 255, 255, 0.08); /* Apenas um leve brilho vítreo */
+    backdrop-filter: blur(10px); /* Efeito de vidro */
+    padding: 35px;
+    border-radius: 25px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    text-align: center;
+    width: 350px;
+    box-shadow: 0 25px 50px rgba(0,0,0,0.5);
+}
+
+.album-art {
+    width: 260px;
+    height: 260px;
+    border-radius: 15px;
+    margin-bottom: 20px;
+    object-fit: cover;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+}
+
+#info-container {
+    background: rgba(0, 0, 0, 0.3);
+    padding: 15px;
+    border-radius: 12px;
+    margin: 15px 0 25px;
+    max-height: 110px;
+    overflow-y: auto;
+}
+
+#info-container h3 {
+    font-size: 0.75rem;
+    color: var(--accent);
+    margin: 0 0 5px;
+    text-transform: uppercase;
+}
+
+#artist-info {
+    font-size: 0.85rem;
+    color: #eee;
+    margin: 0;
+    text-align: left;
+}
+
+.footer-instruction {
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 0.9rem;
+    text-align: center;
+    max-width: 400px;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+}
+
+.footer-instruction strong {
+    color: var(--accent);
+}
+
+.btn-play {
+    background-color: var(--accent);
+    color: #000;
+    border: none;
+    padding: 14px 40px;
+    border-radius: 30px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.status-badge {
+    color: var(--accent);
+    font-size: 0.7rem;
+    font-weight: bold;
+    margin-bottom: 15px;
+    display: block;
+    letter-spacing: 2px;
+}
