@@ -164,8 +164,15 @@ window.onload = () => {
 
 window.addEventListener('message', (event) => {
     if (event.data === 'play_radio') {
-        if (audio.paused) {
+        const audio = document.getElementById('audio-element');
+        if (audio && audio.paused) {
             audio.play().catch(err => console.log("Erro no autoplay:", err));
+        }
+    }
+    if (event.data === 'stop_radio') {
+        const audio = document.getElementById('audio-element');
+        if (audio && !audio.paused) {
+            audio.pause();
         }
     }
 });
