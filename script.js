@@ -161,3 +161,11 @@ window.onload = () => {
     loadQueue();
     loadNextTrack();
 };
+
+window.addEventListener('message', (event) => {
+    if (event.data === 'play_radio') {
+        if (audio.paused) {
+            audio.play().catch(err => console.log("Erro no autoplay:", err));
+        }
+    }
+});
