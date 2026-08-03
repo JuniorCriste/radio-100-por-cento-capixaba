@@ -17,7 +17,8 @@ const playlist = [
     { title: "Pro Diabo os Conselhos de Vocês", artist: "Paulo Sérgio", src: "audio/paulosergio/paraodiaboosconselhos.mp3", cover: "img/paulosergio.png" },
     { title: "Selvageria", artist: "Rastaclone", src: "audio/rastaclone/selvageria.mp3", cover: "img/rastaclone.png" },
     { title: "Perfume de Flor", artist: "Rastaclone", src: "audio/rastaclone/perfumedeflor.mp3", cover: "img/rastaclone.png" },
-    { title: "Além do Horizonte", artist: "Roberto Carlos", src: "audio/robertocarlos/alemdohorizonte.mp3", cover: "img/rc1.png" },
+    { title: "Esse Cara Sou Eu", artist: "Roberto Carlos", src: "audio/robertocarlos/essecarasoueu.mp3", cover: "img/rc5.png" },
+    { title: "Jesus Cristo", artist: "Roberto Carlos", src: "audio/robertocarlos/jesuscristo.mp3", cover: "img/rc4.png" },
     { title: "Parei na Contra Mão", artist: "Roberto Carlos", src: "audio/robertocarlos/contramao.mp3", cover: "img/rc2.png" },
     { title: "Splish Splash", artist: "Roberto Carlos", src: "audio/robertocarlos/splishsplash.mp3", cover: "img/rc2.png" },
     { title: "A Namoradinha do Amigo Meu", artist: "Roberto Carlos", src: "audio/robertocarlos/namoradinha.mp3", cover: "img/rc3.png" },
@@ -44,7 +45,16 @@ const playlist = [
     { title: "Lembranças", artist: "Forró Raiz", src: "audio/raiz/lembrancas.mp3", cover: "img/raiz1.png" },
     { title: "Saudade Grande", artist: "Forró Raiz", src: "audio/raiz/saudadegrande.mp3", cover: "img/raiz1.png" },
     { title: "Anjo", artist: "Forró Raiz", src: "audio/raiz/anjo.mp3", cover: "img/raiz1.png" },    
-    { title: "Sai Dessa Coração", artist: "Alemão do Forró", src: "audio/alemao/saidessacoracao.mp3", cover: "img/alemao1.png" }    
+    { title: "Peito Aberto", artist: "Budah", src: "audio/budah/peitoaberto.mp3", cover: "img/budah1.png" },  
+    { title: "Fiorino", artist: "Gabriel Gava", src: "audio/gabrielgava/fiorino.mp3", cover: "img/gg1.png" },  
+    { title: "Você", artist: "Dead Fish", src: "audio/deadfish/voce.mp3", cover: "img/df1.png" },  
+    { title: "Deus Caprichou", artist: "Daniel Caon", src: "audio/danielcaon/deuscaprichou.mp3", cover: "img/dc1.png" },  
+    { title: "Então Deixa", artist: "Nick Cruz", src: "audio/nickcruz/entaodeixa.mp3", cover: "img/nc2.png" },  
+    { title: "Até de Manhã", artist: "Nick Cruz", src: "audio/nickcruz/atedemanha.mp3", cover: "img/nc1.png" },  
+    { title: "Sou Igualzinho a Você", artist: "Elias Wagner", src: "audio/eliaswagner/souigualzinhoavoce.mp3", cover: "img/ew1.png" },  
+    { title: "A Dor Um Dia Vai Passar", artist: "Elias Wagner", src: "audio/eliaswagner/adorumdiavaipassar.mp3", cover: "img/ew1.png" },   
+    { title: "Sai Dessa Coração", artist: "Alemão do Forró", src: "audio/alemao/saidessacoracao.mp3", cover: "img/alemao1.png" },    
+    { title: "Fica Amor", artist: "Alemão do Forró", src: "audio/alemao/ficaamor.mp3", cover: "img/alemao2.png" }    
 ];
 
 const curiosidades = {
@@ -64,7 +74,13 @@ const curiosidades = {
     "Cidade do Reggae": "A Banda Cidade do Reggae, de Vila Velha, foi fundada em outubro de 2012 com objetivo de levar mensagens positivas através do reggae com composições marcantes e envolventes.",
     "Manimal": "Manimal é uma banda da cidade de Vitória. Formada em 1986, seu repertório musical é um misto de rock, congo, ticumbi, entre outros gêneros musicais, resultando assim em um ritmo musical conhecido por 'Movimento rockongo'.",
     "Forró Raiz": "O Forró Raiz surgiu em outubro de 1999, na região de Vitória. Itaúnas, terra natal do vocalista Rafael Boca, é uma das inspirações do grupo. ",
-    "Alemão do Forró": "Alemão do Forró é um cantor, compositor e instrumentista brasileiro nascido em Linhares, Espírito Santo, conhecido como o 'Rei do Forró Capixaba'. Com voz grave e marcante, consolidou carreira solo, acumulando sucessos nacionais."
+    "Alemão do Forró": "Alemão do Forró é um cantor, compositor e instrumentista brasileiro nascido em Linhares, Espírito Santo, conhecido como o 'Rei do Forró Capixaba'. Com voz grave e marcante, consolidou carreira solo, acumulando sucessos nacionais.", 
+    "Budah": "Budah é uma cantora, rapper e compositora capixaba que começou a carreira participando de batalhas de rap no Espírito Santo. Sua trajetória é marcada por superação e serve de inspiração para outras mulheres que buscam espaço no cenário.", 
+    "Elias Wagner": "Elias Wagner nasceu no interior de Rio Bananal e é um exemplo de superação. Após a paralisia infantil, tornou-se cadeirante e hoje é um dos maiores nomes do sertanejo e do brega capixaba.", 
+    "Gabriel Gava": "Gabriel Gava é um cantor brasileiro de sertanejo universitário nascido em Boa Esperança, Espírito Santo, que alcançou fama nacional em 2012 com o hit Fiorino.", 
+    "Nick Cruz": "Nick Cruz é um cantor e compositor pop brasileiro natural de Serra, Espírito Santo, que ganhou projeção nacional como o primeiro homem trans a participar de um reality show musical na TV aberta (Estrela da Casa).", 
+    "Daniel Caon": "Daniel Caon nasceu em Linhares, no estado do Espírito Santo. Famoso por suas músicas de sertanejo e participação em reality show.", 
+    "Dead Fish": "Dead Fish é uma famosa banda brasileira de hardcore melódico formada em Vitória, no Espírito Santo, em 1991. O grupo é conhecido por sua energia ao vivo, letras diretas e forte posicionamento político progressista." 
 };
 
 // ... Fim do acervo
