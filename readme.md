@@ -56,5 +56,5 @@ radio-capixaba/
 ├── script.js            # Lógica de áudio, playlist, cache e eventos
 ├── img/                  # Logos, capas de álbuns e elementos visuais
 │   ├── radiocapixaba.png # Logo oficial do projeto
-│   └── ...              # Capas dos artistas (.png / .jpg)
+│   └── ...              # Capas dos artistas (.png)
 └── audio/                # Acervo de arquivos de áudio (.mp3) segmentado por artista
