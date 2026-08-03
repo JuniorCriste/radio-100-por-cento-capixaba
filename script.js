@@ -44,7 +44,6 @@ const playlist = [
     { title: "Deixa Chover", artist: "Forró Raiz", src: "audio/raiz/deixachover.mp3", cover: "img/raiz1.png" },
     { title: "Lembranças", artist: "Forró Raiz", src: "audio/raiz/lembrancas.mp3", cover: "img/raiz1.png" },
     { title: "Saudade Grande", artist: "Forró Raiz", src: "audio/raiz/saudadegrande.mp3", cover: "img/raiz1.png" },
-    { title: "Anjo", artist: "Forró Raiz", src: "audio/raiz/anjo.mp3", cover: "img/raiz1.png" },    
     { title: "Peito Aberto", artist: "Budah", src: "audio/budah/peitoaberto.mp3", cover: "img/budah1.png" },  
     { title: "Fiorino", artist: "Gabriel Gava", src: "audio/gabrielgava/fiorino.mp3", cover: "img/gg1.png" },  
     { title: "Você", artist: "Dead Fish", src: "audio/deadfish/voce.mp3", cover: "img/df1.png" },  
@@ -73,7 +72,7 @@ const curiosidades = {
     "Trio Chapahall's": "A banda Trio Chapahalls foi fundada na cidade de São Mateus, no Norte do Espírito Santo. Surgiu no final dos anos 90, unindo o talento de músicos que já circulavam pela cena regional.",
     "Cidade do Reggae": "A Banda Cidade do Reggae, de Vila Velha, foi fundada em outubro de 2012 com objetivo de levar mensagens positivas através do reggae com composições marcantes e envolventes.",
     "Manimal": "Manimal é uma banda da cidade de Vitória. Formada em 1986, seu repertório musical é um misto de rock, congo, ticumbi, entre outros gêneros musicais, resultando assim em um ritmo musical conhecido por 'Movimento rockongo'.",
-    "Forró Raiz": "O Forró Raiz surgiu em outubro de 1999, na região de Vitória. Itaúnas, terra natal do vocalista Rafael Boca, é uma das inspirações do grupo. ",
+    "Forró Raiz": "O Forró Raiz surgiu em outubro de 1999, na região de Vitória. Itaúnas, terra natal do vocalista Rafael Boca, é uma das inspirações do grupo.",
     "Alemão do Forró": "Alemão do Forró é um cantor, compositor e instrumentista brasileiro nascido em Linhares, Espírito Santo, conhecido como o 'Rei do Forró Capixaba'. Com voz grave e marcante, consolidou carreira solo, acumulando sucessos nacionais.", 
     "Budah": "Budah é uma cantora, rapper e compositora capixaba que começou a carreira participando de batalhas de rap no Espírito Santo. Sua trajetória é marcada por superação e serve de inspiração para outras mulheres que buscam espaço no cenário.", 
     "Elias Wagner": "Elias Wagner nasceu no interior de Rio Bananal e é um exemplo de superação. Após a paralisia infantil, tornou-se cadeirante e hoje é um dos maiores nomes do sertanejo e do brega capixaba.", 
@@ -83,7 +82,7 @@ const curiosidades = {
     "Dead Fish": "Dead Fish é uma famosa banda brasileira de hardcore melódico formada em Vitória, no Espírito Santo, em 1991. O grupo é conhecido por sua energia ao vivo, letras diretas e forte posicionamento político progressista." 
 };
 
-// ... Fim do acervo
+// --- FIM DO ACERVO ---
 
 let queue = [];
 const audio = document.getElementById('audio-element');
@@ -172,7 +171,7 @@ window.addEventListener('keyup', (e) => {
     pressedKeys.delete(e.key);
 });
 
-// Inicialização corrigida
+// Inicialização
 window.onload = () => {
     loadQueue();
     loadNextTrack();
@@ -180,33 +179,70 @@ window.onload = () => {
 
 window.addEventListener('message', (event) => {
     if (event.data === 'play_radio') {
-        const audio = document.getElementById('audio-element');
         if (audio && audio.paused) {
             audio.play().catch(err => console.log("Erro no autoplay:", err));
         }
     }
     if (event.data === 'stop_radio') {
-        const audio = document.getElementById('audio-element');
         if (audio && !audio.paused) {
             audio.pause();
         }
     }
 });
 
+// --- REPRODUÇÃO DO ÁUDIO DE HORA PRE-GRAVADO (ESTILO RÁDIO COM FADE) ---
 
-// Reprodução do Áudio de Hora Pre-gravado
 function reproduzirAudioHora() {
     const agora = new Date();
     const horas24 = agora.getHours();
     
-    // Converte de formato 24h para 12h (0h e 12h viram 12; 1h e 13h viram 1, etc.)
+    // Converte de formato 24h para 12h
     const horaFormatada = (horas24 % 12) === 0 ? 12 : (horas24 % 12);
     
     const audioHora = new Audio(`audio/hora/${horaFormatada}.ogg`);
-    audioHora.play().catch(() => console.log(`Erro ao reproduzir o arquivo audio/hora/${horaFormatada}.ogg`));
+    const volumeOriginal = audio.volume;
+    const volumeBaixo = volumeOriginal * 0.2; // Volume durante a vinheta (20%)
+
+    // Função interna para transição suave de volume (Fade-in / Fade-out)
+    function transicionarVolume(audioElement, volumeAlvo, duracaoMs = 500) {
+        const volumeInicial = audioElement.volume;
+        const diferenca = volumeAlvo - volumeInicial;
+        const passos = 20;
+        const intervaloMs = duracaoMs / passos;
+        let passoAtual = 0;
+
+        const timer = setInterval(() => {
+            passoAtual++;
+            audioElement.volume = Math.max(0, Math.min(1, volumeInicial + (diferenca * (passoAtual / passos))));
+            
+            if (passoAtual >= passos) {
+                clearInterval(timer);
+            }
+        }, intervaloMs);
+    }
+
+    // 1. Quando o áudio da hora começar, faz fade-out suave na música principal
+    audioHora.onplay = () => {
+        transicionarVolume(audio, volumeBaixo, 400); // 0.4s de transição para descer
+    };
+
+    // 2. Quando terminar, faz fade-in suave de volta ao volume original
+    audioHora.onended = () => {
+        transicionarVolume(audio, volumeOriginal, 600); // 0.6s de transição para subir
+    };
+
+    // Garantia de segurança contra falhas no áudio da hora
+    audioHora.onerror = () => {
+        audio.volume = volumeOriginal;
+        console.log(`Erro ao reproduzir o arquivo audio/hora/${horaFormatada}.ogg`);
+    };
+
+    audioHora.play().catch(() => {
+        audio.volume = volumeOriginal;
+    });
 }
 
-// Verificação do Relógio
+// Verificação do Relógio a cada segundo
 setInterval(() => {
     const agora = new Date();
     if (agora.getMinutes() === 0 && agora.getSeconds() === 0) {
