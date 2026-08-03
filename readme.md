@@ -32,7 +32,6 @@ A versão **v1.1** traz aprimoramentos no fluxo de execução, gerenciamento int
   * Persistência da fila no `localStorage`, garantindo continuidade entre sessões.
 * 💡 **Curiosidades do Artista:** Exibição dinâmica de fatos históricos e biografias resumidas sobre os artistas capixabas durante a reprodução.
 * 🎨 **Interface 'Glassmorphism' & Background Dinâmico:** Visual moderno com efeito fosco e plano de fundo desfocado que se adapta à capa do álbum em reprodução.
-* ⌨️ **Atalho Secreto de Navegação:** Pressione `1 + 2 + 3` simultaneamente para redirecionar diretamente ao *Painel José Teixeira Fialho*.
 * 🎛️ **Comunicação por iFrame (`postMessage`):** Suporte a comandos externos (`play_radio` e `stop_radio`) para integração simplificada em dashboards e portais.
 
 ---
@@ -42,7 +41,7 @@ A versão **v1.1** traz aprimoramentos no fluxo de execução, gerenciamento int
 A rádio celebra a diversidade sonora do Espírito Santo, trazendo grandes nomes como:
 
 * **Rock, Hardcore e MPB:** Roberto Carlos, Sérgio Sampaio, Supercombo, Dead Fish, Silva, Rastaclone.
-* **Congo, Reggae e Fusion:** Casaca, Macucos, Manimal (*Movimento Rockongo*), Cidade do Reggae.
+* **Congo, Reggae e Fusion:** Casaca, Macucos, Manimal, Cidade do Reggae.
 * **Forró & Sertanejo Capixaba:** Alemão do Forró, Chama Chuva, Forró Bemtivi, Trio Chapahall's, Dallas Company, Elias Wagner, Gabriel Gava.
 * **Pop, Trap & Urban:** Budah, Nick Cruz, Daniel Caon.
 
