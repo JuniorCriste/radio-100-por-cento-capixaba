@@ -145,7 +145,7 @@ body, html {
     font-size: 0.82rem;
     color: #eee;
     margin: 0;
-    text-align: left;
+    text-align: justify;
     line-height: 1.35;
 }
 
@@ -199,6 +199,7 @@ body, html {
     text-shadow: 0 1px 3px rgba(0,0,0,0.8);
     z-index: 10;
     opacity: 0.5;
+    transition: opacity 0.3s ease-in-out;
 }
 
 .footer-credits a {
@@ -208,5 +209,9 @@ body, html {
 
 .footer-credits a:hover {
     text-decoration: underline;
-    opacity: 1;
+    opacity: 1.0;
+}
+
+.footer-credits:hover {
+    opacity: 1.0;
 }
