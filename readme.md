@@ -14,6 +14,7 @@
   <img src="https://img.shields.io/badge/status-ativo-success.svg" alt="Status">
 </p>
 
+🌐 **Acesse agora mesmo:** [juniorcriste.github.io/radio-100-por-cento-capixaba/](https://juniorcriste.github.io/radio-100-por-cento-capixaba/)
 ---
 
 ## 📌 Sobre o Projeto
