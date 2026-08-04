@@ -188,11 +188,17 @@ body, html {
 }
 
 .footer-credits {
+    position: fixed;
+    bottom: 12px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
     font-size: 0.73rem;
     color: rgba(255, 255, 255, 0.75);
     text-align: center;
-    margin-top: 2px;
     text-shadow: 0 1px 3px rgba(0,0,0,0.8);
+    z-index: 10;
+    opacity: 0.5;
 }
 
 .footer-credits a {
@@ -202,4 +208,5 @@ body, html {
 
 .footer-credits a:hover {
     text-decoration: underline;
+    opacity: 1;
 }
