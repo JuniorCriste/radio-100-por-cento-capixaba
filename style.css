@@ -5,17 +5,22 @@
     --accent: #1db954;
 }
 
+* {
+    box-sizing: border-box;
+}
+
 body, html {
     margin: 0;
     padding: 0;
-    height: 100%;
+    height: 100vh;
+    width: 100vw;
     font-family: 'Segoe UI', Roboto, sans-serif;
     background-color: var(--bg-color);
     color: var(--text-main);
     display: flex;
     justify-content: center;
     align-items: center;
-    overflow: hidden;
+    overflow: hidden; /* Tela única sem barras de rolagem */
 }
 
 #bg-overlay {
@@ -36,58 +41,108 @@ body, html {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 25px;
+    justify-content: center;
+    gap: 15px;
+    height: 98vh;
+    padding: 10px 0;
+    max-width: 440px;
+    width: 92%;
 }
 
 .player-container {
-    background-color: rgba(255, 255, 255, 0.08); /* Apenas um leve brilho vítreo */
-    backdrop-filter: blur(10px); /* Efeito de vidro */
-    padding: 35px;
-    border-radius: 25px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    background-color: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(12px);
+    padding: 25px 30px;
+    border-radius: 24px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
     text-align: center;
-    width: 350px;
-    box-shadow: 0 25px 50px rgba(0,0,0,0.5);
+    width: 100%;
+    box-shadow: 0 20px 45px rgba(0,0,0,0.6);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Wrapper para sobrepor a Capa do Álbum e o Logo */
+.album-wrapper {
+    position: relative;
+    width: 230px;
+    height: 230px;
+    max-height: 30vh;
+    max-width: 30vh;
+    margin-bottom: 12px;
 }
 
 .album-art {
-    width: 260px;
-    height: 260px;
-    border-radius: 15px;
-    margin-bottom: 20px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 16px;
     object-fit: cover;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.6);
+    opacity: 0;
+    transition: opacity 1.5s ease-in-out; /* Transição de Fade suave */
+}
+
+/* Ajuste do logo dentro do quadro para manter proporção agradável */
+#radio-logo {
+    object-fit: contain;
+    background-color: rgba(0, 0, 0, 0.2);
+    padding: 15px;
+    box-sizing: border-box;
+}
+
+/* Classe que ativa a visibilidade */
+.album-art.active {
+    opacity: 1;
+}
+
+#track-title {
+    font-size: 1.3rem;
+    margin: 4px 0 2px 0;
+}
+
+#track-artist {
+    font-size: 1rem;
+    color: var(--text-sub);
+    margin: 0 0 10px 0;
 }
 
 #info-container {
-    background: rgba(0, 0, 0, 0.3);
-    padding: 15px;
+    background: rgba(0, 0, 0, 0.35);
+    padding: 12px 15px;
     border-radius: 12px;
-    margin: 15px 0 25px;
-    max-height: 110px;
+    margin: 5px 0 15px;
+    max-height: 90px;
+    width: 100%;
     overflow-y: auto;
 }
 
 #info-container h3 {
-    font-size: 0.75rem;
+    font-size: 0.72rem;
     color: var(--accent);
-    margin: 0 0 5px;
+    margin: 0 0 4px;
     text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
 #artist-info {
-    font-size: 0.85rem;
+    font-size: 0.83rem;
     color: #eee;
     margin: 0;
     text-align: left;
+    line-height: 1.3;
 }
 
 .footer-instruction {
     color: rgba(255, 255, 255, 0.6);
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     text-align: center;
     max-width: 400px;
     text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+    margin: 0;
 }
 
 .footer-instruction strong {
@@ -98,18 +153,41 @@ body, html {
     background-color: var(--accent);
     color: #000;
     border: none;
-    padding: 14px 40px;
+    padding: 12px 35px;
     border-radius: 30px;
     font-weight: 700;
+    font-size: 0.95rem;
     cursor: pointer;
     transition: 0.3s;
+}
+
+.btn-play:hover {
+    transform: scale(1.04);
 }
 
 .status-badge {
     color: var(--accent);
     font-size: 0.7rem;
     font-weight: bold;
-    margin-bottom: 15px;
+    margin-bottom: 12px;
     display: block;
     letter-spacing: 2px;
+}
+
+/* Rodapé de Créditos */
+.footer-credits {
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.75);
+    text-align: center;
+    margin-top: 2px;
+    text-shadow: 0 1px 3px rgba(0,0,0,0.8);
+}
+
+.footer-credits a {
+    color: var(--accent);
+    text-decoration: none;
+}
+
+.footer-credits a:hover {
+    text-decoration: underline;
 }
