@@ -14,15 +14,16 @@
   <img src="https://img.shields.io/badge/status-ativo-success.svg" alt="Status">
 </p>
 
-🌐 **Acesse agora mesmo:** [juniorcriste.github.io/radio-100-por-cento-capixaba/](https://juniorcriste.github.io/radio-100-por-cento-capixaba/)
+
 ---
 
 ## 📌 Sobre o Projeto
 
 A **Rádio 100% Capixaba** é um player de rádio web moderno e dinâmico, desenvolvido com foco na cena musical do Espírito Santo. O projeto compila sucessos de ícones nacionais e regionais capixabas, oferecendo aos ouvintes não apenas música de alta qualidade, mas também curiosidades culturais e históricas sobre cada artista.
 
-A versão **v1.1** traz aprimoramentos no fluxo de execução, gerenciamento inteligente de reprodução via `localStorage` e integração avançada por `postMessage`.
+A versão **v1.5** traz aprimoramentos no fluxo de execução, gerenciamento inteligente de reprodução via `localStorage` e integração avançada por `postMessage`.
 
+🌐 **Acesse agora mesmo:** [juniorcriste.github.io/radio-100-por-cento-capixaba/](https://juniorcriste.github.io/radio-100-por-cento-capixaba/)
 ---
 
 ## ✨ Funcionalidades Principais
