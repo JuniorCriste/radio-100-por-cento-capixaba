@@ -20,7 +20,7 @@ body, html {
     display: flex;
     justify-content: center;
     align-items: center;
-    overflow: hidden; /* Tela única sem rolagem da página */
+    overflow: hidden; /* Mantém em tela única */
 }
 
 #bg-overlay {
@@ -41,39 +41,37 @@ body, html {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-between;
-    height: 96vh; /* Aproveita 96% da altura total do monitor/tela */
+    justify-content: center;
+    gap: 12px;
+    max-height: 98vh;
     padding: 10px 0;
-    max-width: 480px;
-    width: 92%;
+    max-width: 440px; /* Aumentado levemente para acompanhar a capa */
+    width: 90%;
 }
 
 .player-container {
     background-color: rgba(255, 255, 255, 0.08);
     backdrop-filter: blur(12px);
-    padding: 20px 25px;
+    padding: 22px 25px;
     border-radius: 24px;
     border: 1px solid rgba(255, 255, 255, 0.12);
     text-align: center;
     width: 100%;
-    height: 100%; /* Ocupa a altura do wrapper para expandir o player */
+    height: auto;
     box-shadow: 0 20px 45px rgba(0,0,0,0.6);
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-between; /* Distribui verticalmente de forma harmônica */
-    overflow: hidden;
 }
 
-/* Wrapper para sobrepor a Capa do Álbum e o Logo */
+/* Wrapper para sobrepor a Capa do Álbum e o Logo - AUMENTADO */
 .album-wrapper {
     position: relative;
-    width: 210px;
-    height: 210px;
-    max-height: 24vh; /* Ajuste para não roubar espaço do texto em telas baixas */
-    max-width: 24vh;
-    margin-bottom: 5px;
-    flex-shrink: 0;
+    width: 260px;       /* Aumentado de 210px */
+    height: 260px;      /* Aumentado de 210px */
+    max-height: 32vh;   /* Aumentado de 26vh */
+    max-width: 32vh;    /* Aumentado de 26vh */
+    margin-bottom: 12px;
 }
 
 .album-art {
@@ -82,18 +80,18 @@ body, html {
     left: 0;
     width: 100%;
     height: 100%;
-    border-radius: 16px;
+    border-radius: 18px;
     object-fit: cover;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.6);
+    box-shadow: 0 12px 28px rgba(0,0,0,0.65);
     opacity: 0;
-    transition: opacity 1.5s ease-in-out; /* Efeito Fade */
+    transition: opacity 1.5s ease-in-out;
 }
 
 /* Ajuste do logo dentro do quadro */
 #radio-logo {
     object-fit: contain;
     background-color: rgba(0, 0, 0, 0.25);
-    padding: 15px;
+    padding: 18px;
     box-sizing: border-box;
 }
 
@@ -109,26 +107,23 @@ body, html {
 #track-artist {
     font-size: 0.95rem;
     color: var(--text-sub);
-    margin: 0 0 5px 0;
+    margin: 0 0 6px 0;
 }
 
-/* CONTAINER DE DESCRIÇÃO AMPLIAÇÃO DE ALTURA */
+/* Container da Descrição Proporcional */
 #info-container {
     background: rgba(0, 0, 0, 0.35);
-    padding: 14px 16px;
-    border-radius: 14px;
-    margin: 6px 0;
+    padding: 10px 14px;
+    border-radius: 12px;
+    margin: 6px 0 12px;
     width: 100%;
-    flex: 1; /* Permite esticar verticalmente preenchendo o espaço disponível */
-    max-height: 180px; /* Dobrado o limite anterior de 90px */
-    min-height: 100px;
+    max-height: 100px; /* Levemente reduzido para compensar a capa maior */
     overflow-y: auto;
     border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
-/* Estilização da barra de rolagem da descrição */
 #info-container::-webkit-scrollbar {
-    width: 6px;
+    width: 5px;
 }
 #info-container::-webkit-scrollbar-thumb {
     background: var(--accent);
@@ -139,19 +134,19 @@ body, html {
 }
 
 #info-container h3 {
-    font-size: 0.75rem;
+    font-size: 0.72rem;
     color: var(--accent);
-    margin: 0 0 6px;
+    margin: 0 0 4px;
     text-transform: uppercase;
-    letter-spacing: 1.5px;
+    letter-spacing: 1.2px;
 }
 
 #artist-info {
-    font-size: 0.9rem;
+    font-size: 0.82rem;
     color: #eee;
     margin: 0;
     text-align: left;
-    line-height: 1.4;
+    line-height: 1.35;
 }
 
 .footer-instruction {
@@ -171,13 +166,12 @@ body, html {
     background-color: var(--accent);
     color: #000;
     border: none;
-    padding: 12px 35px;
+    padding: 11px 32px;
     border-radius: 30px;
     font-weight: 700;
-    font-size: 0.95rem;
+    font-size: 0.9rem;
     cursor: pointer;
     transition: 0.3s;
-    flex-shrink: 0;
 }
 
 .btn-play:hover {
@@ -186,22 +180,19 @@ body, html {
 
 .status-badge {
     color: var(--accent);
-    font-size: 0.7rem;
+    font-size: 0.68rem;
     font-weight: bold;
-    margin-bottom: 6px;
+    margin-bottom: 8px;
     display: block;
     letter-spacing: 2px;
-    flex-shrink: 0;
 }
 
-/* Rodapé de Créditos */
 .footer-credits {
-    font-size: 0.75rem;
+    font-size: 0.73rem;
     color: rgba(255, 255, 255, 0.75);
     text-align: center;
-    margin-top: 4px;
+    margin-top: 2px;
     text-shadow: 0 1px 3px rgba(0,0,0,0.8);
-    flex-shrink: 0;
 }
 
 .footer-credits a {
