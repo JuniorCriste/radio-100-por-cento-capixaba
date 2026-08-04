@@ -23,10 +23,10 @@ A **Rádio 100% Capixaba** é um player de rádio web moderno e dinâmico, desen
 
 A versão **v1.5** traz aprimoramentos no fluxo de execução, gerenciamento inteligente de reprodução via `localStorage` e integração avançada por `postMessage`.
 
-🌐 **Acesse agora mesmo:** [juniorcriste.github.io/radio-100-por-cento-capixaba/](https://juniorcriste.github.io/radio-100-por-cento-capixaba/)
+#### 🌐 **Acesse agora mesmo:** [juniorcriste.github.io/radio-100-por-cento-capixaba/](https://juniorcriste.github.io/radio-100-por-cento-capixaba/)
 ---
 
-## ✨ Funcionalidades Principais
+## ✨ Principais Funcionalidades 
 
 * 🎶 **Playlist 100% Regional:** Mais de 50 faixas catalogadas englobando múltiplos gêneros (Rock, Reggae, Congo, Sertanejo, Forró Pé-de-Serra, Hardcore e Pop).
 * 🔀 **Fila de Reprodução Inteligente (Shuffle & Cache):**
