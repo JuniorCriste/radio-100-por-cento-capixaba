@@ -117,12 +117,17 @@ function loadQueue() {
         queue = shuffleArray([...playlist]);
         saveQueue();
     }
+
+    // Exibe no console a ordem futura do sorteio atual carregado do cache
+    console.table(queue.map((t, index) => ({ Ordem: index + 1, Artista: t.artist, Música: t.title })));
 }
 
 function loadNextTrack() {
     // Se acabou a fila, recria uma nova do zero
     if (queue.length === 0) {
         queue = shuffleArray([...playlist]);
+        console.warn("🔄 A fila acabou! Um novo sorteio completo de todas as faixas foi gerado.");
+        console.table(queue.map((t, index) => ({ Ordem: index + 1, Artista: t.artist, Música: t.title })));
     }
 
     // Remove a primeira música da fila (shift)
@@ -130,6 +135,9 @@ function loadNextTrack() {
     
     // Salva a fila atualizada (sem a música que vai tocar agora)
     saveQueue();
+    
+    // --- MAPEAMENTO DO SORTEIO NO CONSOLE ---
+    console.log(`🎲 [Sorteio Rádio Capixaba] Tocando agora: "${track.title}" - ${track.artist} | Faixas restantes no ciclo: ${queue.length}`);
     
     // Atualiza os elementos da página
     title.innerText = track.title;
