@@ -85,6 +85,8 @@ const curiosidades = {
 // --- FIM DO ACERVO ---
 
 let queue = [];
+let currentTrackObj = null; // Variável para controlar a faixa atual ao atualizar a página
+
 const audio = document.getElementById('audio-element');
 const title = document.getElementById('track-title');
 const artist = document.getElementById('track-artist');
@@ -92,7 +94,7 @@ const info = document.getElementById('artist-info');
 const cover = document.getElementById('album-cover');
 const bgOverlay = document.getElementById('bg-overlay');
 
-// --- LÓGICA DA RÁDIO COM CACHE PERSISTENTE (VERSÃO 1.6) ---
+// --- LÓGICA DA RÁDIO COM CACHE PERSISTENTE (VERSÃO 1.6 - CORRIGIDA) ---
 
 function shuffleArray(array) {
     for (let i = array.length - 1; i > 0; i--) {
@@ -103,23 +105,29 @@ function shuffleArray(array) {
 }
 
 function saveQueue() {
-    const data = {
-        queue: queue,
-        version: "1.6"
-    };
-    localStorage.setItem('radio_queue_v16', JSON.stringify(data));
+    // Salvamos diretamente a fila (array) para facilitar a leitura exata
+    localStorage.setItem('radio_queue_v16', JSON.stringify(queue));
+    if (currentTrackObj) {
+        localStorage.setItem('radio_current_v16', JSON.stringify(currentTrackObj));
+    }
 }
 
 function loadQueue() {
-    const savedRaw = localStorage.getItem('radio_queue_v16');
+    const savedQueueRaw = localStorage.getItem('radio_queue_v16');
+    const savedCurrentRaw = localStorage.getItem('radio_current_v16');
     
-    if (savedRaw) {
+    if (savedQueueRaw) {
         try {
-            const data = JSON.parse(savedRaw);
-            // Verifica se a fila salva tem o mesmo tamanho da playlist oficial
-            if (data.queue && Array.isArray(data.queue) && data.queue.length === playlist.length) {
-                queue = data.queue;
-                console.log("✅ Fila carregada com sucesso do cache persistente (Mantendo a ordem anterior).");
+            const parsedQueue = JSON.parse(savedQueueRaw);
+            // Se for um array válido salvo no cache
+            if (Array.isArray(parsedQueue)) {
+                queue = parsedQueue;
+                
+                if (savedCurrentRaw) {
+                    currentTrackObj = JSON.parse(savedCurrentRaw);
+                }
+
+                console.log(`✅ Fila carregada com sucesso do cache persistente! Restam ${queue.length} faixas na fila atual.`);
                 console.table(queue.map((t, index) => ({ Ordem: index + 1, Artista: t.artist, Música: t.title })));
                 return;
             }
@@ -131,6 +139,7 @@ function loadQueue() {
     // Se não houver cache válido, gera uma nova fila completa do zero
     console.warn("🔄 Nenhuma fila válida encontrada. Gerando novo sorteio completo.");
     queue = shuffleArray([...playlist]);
+    currentTrackObj = null;
     saveQueue();
     console.table(queue.map((t, index) => ({ Ordem: index + 1, Artista: t.artist, Música: t.title })));
 }
@@ -145,6 +154,7 @@ function loadNextTrack() {
 
     // Retira a próxima música da fila
     const track = queue.shift();
+    currentTrackObj = track; // Atualiza a faixa atual
     
     // Atualiza imediatamente o cache persistente com o estado restante
     saveQueue();
@@ -163,6 +173,23 @@ function loadNextTrack() {
     document.title = `Rádio 100% Capixaba! Ouvindo agora: ${track.artist} - ${track.title}`;
     
     audio.play().catch(() => console.log("Aguardando interação do usuário..."));
+}
+
+// Função para aplicar a faixa que estava tocando caso a página atualize
+function restoreCurrentTrack() {
+    if (currentTrackObj) {
+        const track = currentTrackObj;
+        title.innerText = track.title;
+        artist.innerText = track.artist;
+        cover.src = track.cover;
+        bgOverlay.style.backgroundImage = `url('${track.cover}')`;
+        audio.src = track.src;
+        info.innerText = curiosidades[track.artist] || "Informação não disponível.";
+        document.title = `Rádio 100% Capixaba! Ouvindo agora: ${track.artist} - ${track.title}`;
+        console.log(`▶️ Restaurando estado anterior: Tocando "${track.title}" - ${track.artist}`);
+    } else {
+        loadNextTrack();
+    }
 }
 
 function toggleRadio() {
@@ -195,7 +222,7 @@ window.addEventListener('keyup', (e) => {
 // Inicialização
 window.onload = () => {
     loadQueue();
-    loadNextTrack();
+    restoreCurrentTrack();
 };
 
 window.addEventListener('message', (event) => {
