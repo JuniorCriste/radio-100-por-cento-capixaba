@@ -85,7 +85,6 @@ const curiosidades = {
 // --- FIM DO ACERVO ---
 
 let queue = [];
-let currentTrackObj = null; // Variável para controlar a faixa atual ao atualizar a página
 
 const audio = document.getElementById('audio-element');
 const title = document.getElementById('track-title');
@@ -94,7 +93,7 @@ const info = document.getElementById('artist-info');
 const cover = document.getElementById('album-cover');
 const bgOverlay = document.getElementById('bg-overlay');
 
-// --- LÓGICA DA RÁDIO COM CACHE PERSISTENTE (VERSÃO 1.6 - CORRIGIDA) ---
+// --- LÓGICA DA RÁDIO COM CACHE PERSISTENTE (VERSÃO 1.6 - PULA PARA A PRÓXIMA AO ATUALIZAR) ---
 
 function shuffleArray(array) {
     for (let i = array.length - 1; i > 0; i--) {
@@ -105,43 +104,30 @@ function shuffleArray(array) {
 }
 
 function saveQueue() {
-    // Salvamos diretamente a fila (array) para facilitar a leitura exata
     localStorage.setItem('radio_queue_v16', JSON.stringify(queue));
-    if (currentTrackObj) {
-        localStorage.setItem('radio_current_v16', JSON.stringify(currentTrackObj));
-    }
 }
 
 function loadQueue() {
     const savedQueueRaw = localStorage.getItem('radio_queue_v16');
-    const savedCurrentRaw = localStorage.getItem('radio_current_v16');
     
     if (savedQueueRaw) {
         try {
             const parsedQueue = JSON.parse(savedQueueRaw);
-            // Se for um array válido salvo no cache
-            if (Array.isArray(parsedQueue)) {
+            // Se for um array válido e do mesmo tamanho da playlist original
+            if (Array.isArray(parsedQueue) && parsedQueue.length === playlist.length) {
                 queue = parsedQueue;
-                
-                if (savedCurrentRaw) {
-                    currentTrackObj = JSON.parse(savedCurrentRaw);
-                }
-
-                console.log(`✅ Fila carregada com sucesso do cache persistente! Restam ${queue.length} faixas na fila atual.`);
-                console.table(queue.map((t, index) => ({ Ordem: index + 1, Artista: t.artist, Música: t.title })));
+                console.log(`✅ Fila carregada do cache! Restam ${queue.length} faixas.`);
                 return;
             }
         } catch (e) {
-            console.error("Erro ao ler o cache do quiosque.");
+            console.error("Erro ao ler o cache.");
         }
     }
     
-    // Se não houver cache válido, gera uma nova fila completa do zero
+    // Se não houver cache válido ou a playlist mudou de tamanho, gera uma nova fila completa
     console.warn("🔄 Nenhuma fila válida encontrada. Gerando novo sorteio completo.");
     queue = shuffleArray([...playlist]);
-    currentTrackObj = null;
     saveQueue();
-    console.table(queue.map((t, index) => ({ Ordem: index + 1, Artista: t.artist, Música: t.title })));
 }
 
 function loadNextTrack() {
@@ -149,18 +135,17 @@ function loadNextTrack() {
     if (queue.length === 0) {
         queue = shuffleArray([...playlist]);
         console.warn("🔄 A fila acabou! Um novo sorteio completo de todas as faixas foi gerado.");
-        console.table(queue.map((t, index) => ({ Ordem: index + 1, Artista: t.artist, Música: t.title })));
     }
 
     // Retira a próxima música da fila
     const track = queue.shift();
-    currentTrackObj = track; // Atualiza a faixa atual
     
     // Atualiza imediatamente o cache persistente com o estado restante
     saveQueue();
     
     // --- MAPEAMENTO DO SORTEIO NO CONSOLE ---
     console.log(`🎲 [Sorteio Rádio Capixaba v1.6] Tocando agora: "${track.title}" - ${track.artist} | Faixas restantes no ciclo: ${queue.length}`);
+    console.table(queue.map((t, index) => ({ Ordem: index + 1, Artista: t.artist, Música: t.title })));
     
     // Atualiza os elementos da página
     title.innerText = track.title;
@@ -173,23 +158,6 @@ function loadNextTrack() {
     document.title = `Rádio 100% Capixaba! Ouvindo agora: ${track.artist} - ${track.title}`;
     
     audio.play().catch(() => console.log("Aguardando interação do usuário..."));
-}
-
-// Função para aplicar a faixa que estava tocando caso a página atualize
-function restoreCurrentTrack() {
-    if (currentTrackObj) {
-        const track = currentTrackObj;
-        title.innerText = track.title;
-        artist.innerText = track.artist;
-        cover.src = track.cover;
-        bgOverlay.style.backgroundImage = `url('${track.cover}')`;
-        audio.src = track.src;
-        info.innerText = curiosidades[track.artist] || "Informação não disponível.";
-        document.title = `Rádio 100% Capixaba! Ouvindo agora: ${track.artist} - ${track.title}`;
-        console.log(`▶️ Restaurando estado anterior: Tocando "${track.title}" - ${track.artist}`);
-    } else {
-        loadNextTrack();
-    }
 }
 
 function toggleRadio() {
@@ -219,10 +187,10 @@ window.addEventListener('keyup', (e) => {
     pressedKeys.delete(e.key);
 });
 
-// Inicialização
+// Inicialização: Carrega a fila salva e já pula para a *próxima* música da sequência
 window.onload = () => {
     loadQueue();
-    restoreCurrentTrack();
+    loadNextTrack();
 };
 
 window.addEventListener('message', (event) => {
