@@ -88,7 +88,8 @@ const curiosidades = {
     "Gabriel Gava": "Gabriel Gava é um cantor brasileiro de sertanejo universitário nascido em Boa Esperança, Espírito Santo, que alcançou fama nacional em 2012 com o hit Fiorino.", 
     "Nick Cruz": "Nick Cruz é um cantor e compositor pop brasileiro natural de Serra, Espírito Santo, que ganhou projeção nacional como o primeiro homem trans a participar de um reality show musical na TV aberta (Estrela da Casa).", 
     "Daniel Caon": "Daniel Caon nasceu em Linhares, no estado do Espírito Santo. Famoso por suas músicas de sertanejo e participação em reality show.", 
-    "Dead Fish": "Dead Fish é uma famosa banda brasileira de hardcore melódico formada em Vitória, no Espírito Santo, em 1991. O grupo é conhecido por sua energia ao vivo, letras diretas e forte posicionamento político progressista." 
+    "Dead Fish": "Dead Fish é uma famosa banda brasileira de hardcore melódico formada em Vitória, no Espírito Santo, em 1991. O grupo é conhecido por sua energia ao vivo, letras diretas e forte posicionamento político progressista.", 
+    "SalvAÇÃO": "A banda SalvAÇÃO, originária de Vila Velha (ES), é uma das pioneiras do reggae capixaba. Com mais de 30 anos de trajetória, construiu sua história levando mensagens de paz, amor, consciência e respeito à natureza." 
 };
 
 // --- FIM DO ACERVO ---
