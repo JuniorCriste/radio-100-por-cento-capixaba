@@ -28,7 +28,6 @@ const playlist = [
     { title: "Chegastes", artist: "Roberto Carlos", src: "audio/robertocarlos/chegastes.mp3", cover: "img/rc7.png" },
     { title: "Amigo", artist: "Roberto Carlos", src: "audio/robertocarlos/amigo.mp3", cover: "img/rc6.png" },
     { title: "Como é Grande Meu Amor Por Você", artist: "Roberto Carlos", src: "audio/robertocarlos/comoegrande.mp3", cover: "img/rc8.png" },
-    { title: "Chegastes", artist: "Roberto Carlos", src: "audio/robertocarlos/contramao.mp3", cover: "img/rc7.png" },
     { title: "Parei na Contra Mão", artist: "Roberto Carlos", src: "audio/robertocarlos/contramao.mp3", cover: "img/rc2.png" },
     { title: "Splish Splash", artist: "Roberto Carlos", src: "audio/robertocarlos/splishsplash.mp3", cover: "img/rc2.png" },
     { title: "A Namoradinha do Amigo Meu", artist: "Roberto Carlos", src: "audio/robertocarlos/namoradinha.mp3", cover: "img/rc3.png" },
