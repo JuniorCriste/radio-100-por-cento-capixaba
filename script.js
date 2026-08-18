@@ -19,6 +19,10 @@ const playlist = [
     { title: "Perfume de Flor", artist: "Rastaclone", src: "audio/rastaclone/perfumedeflor.mp3", cover: "img/rastaclone.png" },
     { title: "Esse Cara Sou Eu", artist: "Roberto Carlos", src: "audio/robertocarlos/essecarasoueu.mp3", cover: "img/rc5.png" },
     { title: "Jesus Cristo", artist: "Roberto Carlos", src: "audio/robertocarlos/jesuscristo.mp3", cover: "img/rc4.png" },
+    { title: "Chegastes", artist: "Roberto Carlos", src: "audio/robertocarlos/chegastes.mp3", cover: "img/rc7.png" },
+    { title: "Amigo", artist: "Roberto Carlos", src: "audio/robertocarlos/amigo.mp3", cover: "img/rc6.png" },
+    { title: "Como é Grande Meu Amor Por Você", artist: "Roberto Carlos", src: "audio/robertocarlos/comoegrande.mp3", cover: "img/rc8.png" },
+    { title: "Chegastes", artist: "Roberto Carlos", src: "audio/robertocarlos/contramao.mp3", cover: "img/rc7.png" },
     { title: "Parei na Contra Mão", artist: "Roberto Carlos", src: "audio/robertocarlos/contramao.mp3", cover: "img/rc2.png" },
     { title: "Splish Splash", artist: "Roberto Carlos", src: "audio/robertocarlos/splishsplash.mp3", cover: "img/rc2.png" },
     { title: "A Namoradinha do Amigo Meu", artist: "Roberto Carlos", src: "audio/robertocarlos/namoradinha.mp3", cover: "img/rc3.png" },
@@ -53,7 +57,12 @@ const playlist = [
     { title: "Sou Igualzinho a Você", artist: "Elias Wagner", src: "audio/eliaswagner/souigualzinhoavoce.mp3", cover: "img/ew1.png" },  
     { title: "A Dor Um Dia Vai Passar", artist: "Elias Wagner", src: "audio/eliaswagner/adorumdiavaipassar.mp3", cover: "img/ew1.png" },   
     { title: "Sai Dessa Coração", artist: "Alemão do Forró", src: "audio/alemao/saidessacoracao.mp3", cover: "img/alemao1.png" },    
-    { title: "Fica Amor", artist: "Alemão do Forró", src: "audio/alemao/ficaamor.mp3", cover: "img/alemao2.png" }    
+    { title: "Fica Amor", artist: "Alemão do Forró", src: "audio/alemao/ficaamor.mp3", cover: "img/alemao2.png" },
+    { title: "Tudo Que Você Fizer", artist: "SalvAÇÃO", src: "audio/salvacao/tudoquevcfizer.mp3", cover: "img/salvacao1.png" },    
+    { title: "Carametade", artist: "SalvAÇÃO", src: "audio/salvacao/carametade.mp3", cover: "img/salvacao2.png" },    
+    { title: "Como Vai Você", artist: "SalvAÇÃO", src: "audio/salvacao/comovaivc.mp3", cover: "img/salvacao2.png" },    
+    { title: "Os Dias", artist: "SalvAÇÃO", src: "audio/salvacao/osdias.mp3", cover: "img/salvacao2.png" },    
+    { title: "Pode Crer", artist: "SalvAÇÃO", src: "audio/salvacao/podecrer.mp3", cover: "img/salvacao2.png" }    
 ];
 
 const curiosidades = {
