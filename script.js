@@ -93,7 +93,7 @@ const info = document.getElementById('artist-info');
 const cover = document.getElementById('album-cover');
 const bgOverlay = document.getElementById('bg-overlay');
 
-// --- LÓGICA DA RÁDIO COM CACHE PERSISTENTE (VERSÃO 1.6 - PULA PARA A PRÓXIMA AO ATUALIZAR) ---
+// --- LÓGICA DA RÁDIO COM CACHE PERSISTENTE (VERSÃO 1.6 - CORREÇÃO DE REMOÇÃO DA FILA) ---
 
 function shuffleArray(array) {
     for (let i = array.length - 1; i > 0; i--) {
@@ -113,34 +113,35 @@ function loadQueue() {
     if (savedQueueRaw) {
         try {
             const parsedQueue = JSON.parse(savedQueueRaw);
-            // Se for um array válido e do mesmo tamanho da playlist original
-            if (Array.isArray(parsedQueue) && parsedQueue.length === playlist.length) {
+            // Se for um array válido e menor ou igual ao tamanho total (garantindo que respeita o progresso atual)
+            if (Array.isArray(parsedQueue) && parsedQueue.length > 0 && parsedQueue.length <= playlist.length) {
                 queue = parsedQueue;
-                console.log(`✅ Fila carregada do cache! Restam ${queue.length} faixas.`);
-                return;
+                console.log(`✅ Fila carregada do cache! Restam exatamente ${queue.length} faixas neste ciclo.`);
+                return true;
             }
         } catch (e) {
             console.error("Erro ao ler o cache.");
         }
     }
     
-    // Se não houver cache válido ou a playlist mudou de tamanho, gera uma nova fila completa
+    // Se não houver cache válido, gera uma nova fila completa
     console.warn("🔄 Nenhuma fila válida encontrada. Gerando novo sorteio completo.");
     queue = shuffleArray([...playlist]);
     saveQueue();
+    return false;
 }
 
 function loadNextTrack() {
     // Se a fila esvaziou, gera um novo ciclo completo
     if (queue.length === 0) {
         queue = shuffleArray([...playlist]);
-        console.warn("🔄 A fila acabou! Um novo sorteio completo de todas as faixas foi gerado.");
+        console.warn("🔄 A fila acabou! Um novo ciclo completo de todas as faixas foi gerado.");
     }
 
-    // Retira a próxima música da fila
+    // Retira a próxima música da fila oficial
     const track = queue.shift();
     
-    // Atualiza imediatamente o cache persistente com o estado restante
+    // Salva imediatamente no localStorage o array atualizado com a faixa removida
     saveQueue();
     
     // --- MAPEAMENTO DO SORTEIO NO CONSOLE ---
@@ -163,7 +164,7 @@ function loadNextTrack() {
 function toggleRadio() {
     if (audio.paused) {
         audio.play();
-        document.getElementById('main-button').innerText = "OUVINDO AGORA";
+        document.getElementById('main-button').innerText = "OUVINDO AO VIVO";
     } else {
         audio.pause();
         document.getElementById('main-button').innerText = "RETOMAR RÁDIO";
@@ -187,7 +188,7 @@ window.addEventListener('keyup', (e) => {
     pressedKeys.delete(e.key);
 });
 
-// Inicialização: Carrega a fila salva e já pula para a *próxima* música da sequência
+// Inicialização Correta: Carrega o cache mantendo o progresso e consome apenas 1 faixa
 window.onload = () => {
     loadQueue();
     loadNextTrack();
