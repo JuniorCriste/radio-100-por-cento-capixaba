@@ -111,14 +111,20 @@ function tocarProxima() {
     infoMusica.textContent = "Tocando: " + decodeURIComponent(nomeExibicao);
 
     // Tenta iniciar automaticamente
-    audioPlayer.play().catch(error => {
-        console.log("Reprodução automática bloqueada pelo navegador. Aguardando interação.", error);
-        infoMusica.textContent = "Toque em qualquer lugar para iniciar";
+    audioPlayer.play().then(() => {
+        console.log("Reproduzindo com sucesso:", caminhoArquivo);
+    }).catch(error => {
+        console.warn("Autoplay bloqueado ou erro ao carregar:", error);
+        infoMusica.textContent = "Toque em qualquer lugar da tela para iniciar";
         
-        // Dispara no primeiro clique caso o navegador bloqueie o autoplay puro
-        document.body.addEventListener('click', () => {
-            audioPlayer.play();
-        }, { once: true });
+        // Dispara no primeiro clique em qualquer lugar da página
+        const acionarPlay = () => {
+            audioPlayer.play().then(() => {
+                infoMusica.textContent = "Tocando: " + decodeURIComponent(nomeExibicao);
+                document.body.removeEventListener('click', acionarPlay);
+            });
+        };
+        document.body.addEventListener('click', acionarPlay);
     });
 
     // Avança para a próxima música de forma cíclica
@@ -127,6 +133,12 @@ function tocarProxima() {
 
 // Evento disparado quando a música acaba para tocar a próxima da fila
 audioPlayer.addEventListener('ended', tocarProxima);
+
+// Captura erros de carregamento do áudio (ex: arquivo não encontrado)
+audioPlayer.addEventListener('error', (e) => {
+    console.error("Erro no elemento de áudio:", e);
+    infoMusica.textContent = "Erro ao carregar o arquivo de áudio.";
+});
 
 // Inicialização ao carregar a página
 window.addEventListener('DOMContentLoaded', () => {
