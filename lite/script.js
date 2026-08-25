@@ -1,3 +1,4 @@
+// Sua playlist estruturada corretamente
 const playlist = [
     { title: "Camarada", artist: "Casaca", src: "../audio/casaca/camarada.mp3", cover: "img/casaca1.png" },
     { title: "O Menino Que Sobe a Ladeira (Part. Rapadura)", artist: "Casaca", src: "../audio/casaca/meninoladeira.mp3", cover: "img/casaca3.png" },
@@ -10,7 +11,6 @@ const playlist = [
     { title: "Dança de Cowboy", artist: "Dallas Company", src: "../audio/dallascompany/dancadecowboy.mp3", cover: "img/dallas.png" },
     { title: "Além do Mar", artist: "Macucos", src: "../audio/macucos/alemdomar.mp3", cover: "img/macucos.png" },
     { title: "Haverá", artist: "Macucos", src: "../audio/macucos/havera.mp3", cover: "img/macucos.png" },
-    //{ title: "Depende de Nós", artist: "Moxuara", src: "../audio/moxuara/dependedenos.mp3", cover: "img/moxuara.png" },
     { title: "Os Meninos da Baía de Vitória", artist: "Moxuara", src: "../audio/moxuara/dependedenos.mp3", cover: "img/moxuara.png" },
     { title: "Quero Ver Você Feliz", artist: "Paulo Sérgio", src: "../audio/paulosergio/querovervcfeliz.mp3", cover: "img/paulosergio.png" },
     { title: "Não Creio em Mais Nada", artist: "Paulo Sérgio", src: "../audio/paulosergio/naocreioemmaisnada.mp3", cover: "img/paulosergio.png" },
@@ -102,25 +102,24 @@ function tocarProxima() {
     if (indicesMisturados.length === 0) return;
 
     const indexMusica = indicesMisturados[indiceAtual];
-    const caminhoArquivo = playlist[indexMusica];
+    const musicaAtual = playlist[indexMusica];
 
-    audioPlayer.src = caminhoArquivo;
+    // Define a fonte de áudio correta puxando a propriedade .src do objeto
+    audioPlayer.src = musicaAtual.src;
     
-    // Extrai o nome do arquivo para exibir na faixa
-    const nomeExibicao = caminhoArquivo.split('/').pop().replace(/\.[^/.]+$/, "");
-    infoMusica.textContent = "Tocando: " + decodeURIComponent(nomeExibicao);
+    // Exibe o título e o artista formatados bonitinhos na faixa
+    infoMusica.textContent = `${musicaAtual.artist} - ${musicaAtual.title}`;
 
     // Tenta iniciar automaticamente
     audioPlayer.play().then(() => {
-        console.log("Reproduzindo com sucesso:", caminhoArquivo);
+        console.log("Reproduzindo com sucesso:", musicaAtual.src);
     }).catch(error => {
-        console.warn("Autoplay bloqueado ou erro ao carregar:", error);
+        console.warn("Autoplay bloqueado pelo navegador:", error);
         infoMusica.textContent = "Toque em qualquer lugar da tela para iniciar";
         
-        // Dispara no primeiro clique em qualquer lugar da página
         const acionarPlay = () => {
             audioPlayer.play().then(() => {
-                infoMusica.textContent = "Tocando: " + decodeURIComponent(nomeExibicao);
+                infoMusica.textContent = `${musicaAtual.artist} - ${musicaAtual.title}`;
                 document.body.removeEventListener('click', acionarPlay);
             });
         };
@@ -134,7 +133,7 @@ function tocarProxima() {
 // Evento disparado quando a música acaba para tocar a próxima da fila
 audioPlayer.addEventListener('ended', tocarProxima);
 
-// Captura erros de carregamento do áudio (ex: arquivo não encontrado)
+// Captura erros caso algum arquivo específico não seja encontrado
 audioPlayer.addEventListener('error', (e) => {
     console.error("Erro no elemento de áudio:", e);
     infoMusica.textContent = "Erro ao carregar o arquivo de áudio.";
