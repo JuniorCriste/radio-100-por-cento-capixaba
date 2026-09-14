@@ -104,7 +104,7 @@ function tocarProxima() {
     const indexMusica = indicesMisturados[indiceAtual];
     const musicaAtual = playlist[indexMusica];
 
-    // Define a fonte de áudio correta puxando a propriedade .src do objeto
+    // Define a fonte de áudio correta puxando a propriedade .src do objeto[cite: 2]
     audioPlayer.src = musicaAtual.src;
     
     // Exibe o título e o artista formatados bonitinhos na faixa
@@ -139,17 +139,7 @@ audioPlayer.addEventListener('error', (e) => {
     infoMusica.textContent = "Erro ao carregar o arquivo de áudio.";
 });
 
-// Inicialização ao carregar a página
-window.addEventListener('DOMContentLoaded', () => {
-    if (playlist.length > 0) {
-        iniciarPlaylist();
-        tocarProxima();
-    } else {
-        infoMusica.textContent = "Nenhuma música encontrada.";
-    }
-});
-
-// --- REPRODUÇÃO DO ÁUDIO DE HORA PRE-GRAVADO (ESTILO RÁDIO COM FADE) ---
+// --- REPRODUÇÃO DO ÁUDIO DE HORA PRÉ-GRAVADO (ESTILO RÁDIO COM FADE) ---
 
 function reproduzirAudioHora() {
     const agora = new Date();
@@ -158,8 +148,9 @@ function reproduzirAudioHora() {
     // Converte de formato 24h para 12h
     const horaFormatada = (horas24 % 12) === 0 ? 12 : (horas24 % 12);
     
+    // Ajustado para o caminho relativo correto da página light (`../audio/hora/`)
     const audioHora = new Audio(`../audio/hora/${horaFormatada}.ogg`);
-    const volumeOriginal = audio.volume;
+    const volumeOriginal = audioPlayer.volume;
     const volumeBaixo = volumeOriginal * 0.2; // Volume durante a vinheta (20%)
 
     // Função interna para transição suave de volume (Fade-in / Fade-out)
@@ -182,22 +173,22 @@ function reproduzirAudioHora() {
 
     // 1. Quando o áudio da hora começar, faz fade-out suave na música principal
     audioHora.onplay = () => {
-        transicionarVolume(audio, volumeBaixo, 400); // 0.4s de transição para descer
+        transicionarVolume(audioPlayer, volumeBaixo, 400); // 0.4s de transição para descer
     };
 
     // 2. Quando terminar, faz fade-in suave de volta ao volume original
     audioHora.onended = () => {
-        transicionarVolume(audio, volumeOriginal, 600); // 0.6s de transição para subir
+        transicionarVolume(audioPlayer, volumeOriginal, 600); // 0.6s de transição para subir
     };
 
     // Garantia de segurança contra falhas no áudio da hora
     audioHora.onerror = () => {
-        audio.volume = volumeOriginal;
+        audioPlayer.volume = volumeOriginal;
         console.log(`Erro ao reproduzir o arquivo ../audio/hora/${horaFormatada}.ogg`);
     };
 
     audioHora.play().catch(() => {
-        audio.volume = volumeOriginal;
+        audioPlayer.volume = volumeOriginal;
     });
 }
 
@@ -208,3 +199,14 @@ setInterval(() => {
         reproduzirAudioHora();
     }
 }, 1000);
+
+// Inicialização ao carregar a página
+window.addEventListener('DOMContentLoaded', () => {
+    if (playlist.length > 0) {
+        iniciarPlaylist();
+        tocarProxima();
+    } else {
+        infoMusica.textContent = "Nenhuma música encontrada.";
+    }
+});
+
