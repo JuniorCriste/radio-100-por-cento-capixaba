@@ -1,11 +1,11 @@
 // Sua playlist estruturada corretamente
 const playlist = [
-    { title: "Vinheta", artist: "Rádio 100% Capixaba!", src: "audio/vinhetas/camaradavinheta.mp3", cover: "img/vinheta1.png" },
-    { title: "Vinheta", artist: "Rádio 100% Capixaba!", src: "audio/vinhetas/tremvinheta.mp3", cover: "img/vinheta2.png" },
-    { title: "Vinheta", artist: "Rádio 100% Capixaba!", src: "audio/vinhetas/simboravinheta.mp3", cover: "img/vinheta3.png" },
-    { title: "Vinheta", artist: "Rádio 100% Capixaba!", src: "audio/vinhetas/camaradavinheta.mp3", cover: "img/vinheta1.png" },
-    { title: "Vinheta", artist: "Rádio 100% Capixaba!", src: "audio/vinhetas/tremvinheta.mp3", cover: "img/vinheta2.png" },
-    { title: "Vinheta", artist: "Rádio 100% Capixaba!", src: "audio/vinhetas/simboravinheta.mp3", cover: "img/vinheta3.png" },
+    { title: "Vinheta", artist: "Rádio 100% Capixaba!", src: "../audio/vinhetas/camaradavinheta.mp3", cover: "img/vinheta1.png" },
+    { title: "Vinheta", artist: "Rádio 100% Capixaba!", src: "../audio/vinhetas/tremvinheta.mp3", cover: "img/vinheta2.png" },
+    { title: "Vinheta", artist: "Rádio 100% Capixaba!", src: "../audio/vinhetas/simboravinheta.mp3", cover: "img/vinheta3.png" },
+    { title: "Vinheta", artist: "Rádio 100% Capixaba!", src: "../audio/vinhetas/camaradavinheta.mp3", cover: "img/vinheta1.png" },
+    { title: "Vinheta", artist: "Rádio 100% Capixaba!", src: "../audio/vinhetas/tremvinheta.mp3", cover: "img/vinheta2.png" },
+    { title: "Vinheta", artist: "Rádio 100% Capixaba!", src: "../audio/vinhetas/simboravinheta.mp3", cover: "img/vinheta3.png" },
     { title: "Camarada", artist: "Casaca", src: "../audio/casaca/camarada.mp3", cover: "img/casaca1.png" },
     { title: "O Menino Que Sobe a Ladeira (Part. Rapadura)", artist: "Casaca", src: "../audio/casaca/meninoladeira.mp3", cover: "img/casaca3.png" },
     { title: "Anjo Samile", artist: "Casaca", src: "../audio/casaca/anjosamile.mp3", cover: "img/casaca2.png" },
