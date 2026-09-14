@@ -1,4 +1,4 @@
-// Sua playlist estruturada corretamente
+// LITE
 const playlist = [
     { title: "Vinheta", artist: "Rádio 100% Capixaba!", src: "../audio/vinhetas/camaradavinheta.mp3", cover: "img/vinheta1.png" },
     { title: "Vinheta", artist: "Rádio 100% Capixaba!", src: "../audio/vinhetas/tremvinheta.mp3", cover: "img/vinheta2.png" },
