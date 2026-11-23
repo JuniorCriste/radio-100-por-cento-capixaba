@@ -104,7 +104,12 @@ const curiosidades = {
     "Nick Cruz": "Nick Cruz é um cantor e compositor pop brasileiro natural de Serra, Espírito Santo, que ganhou projeção nacional como o primeiro homem trans a participar de um reality show musical na TV aberta (Estrela da Casa).", 
     "Daniel Caon": "Daniel Caon nasceu em Linhares, no estado do Espírito Santo. Famoso por suas músicas de sertanejo e participação em reality show.", 
     "Dead Fish": "Dead Fish é uma famosa banda brasileira de hardcore melódico formada em Vitória, no Espírito Santo, em 1991. O grupo é conhecido por sua energia ao vivo, letras diretas e forte posicionamento político progressista.", 
-    "SalvAÇÃO": "A banda SalvAÇÃO, originária de Vila Velha (ES), é uma das pioneiras do reggae capixaba. Com mais de 30 anos de trajetória, construiu sua história levando mensagens de paz, amor, consciência e respeito à natureza." 
+    "SalvAÇÃO": "A banda SalvAÇÃO, originária de Vila Velha (ES), é uma das pioneiras do reggae capixaba. Com mais de 30 anos de trajetória, construiu sua história levando mensagens de paz, amor, consciência e respeito à natureza.",
+    "Mukeka di Rato": "Mukeka di Rato é uma banda brasileira de punk/hardcore formada no início de 1995 em Vila Velha (ES). O grupo é conhecido pelo som rápido e pesado.",
+    "Eloá Puri": "Eloá Puri é uma cantora nascida na região do Caparaó. Sua música mistura sonoridades indígenas contemporâneas, MPB e elementos da natureza com temas de ancestralidade, território e resistência.",
+    "Gabriela Brown": "Gabriela Brown é uma cantora capixaba, mergulha na fusão de MPB, soul brasileiro, R&B contemporâneo e elementos latinos e modernos.",
+    "Ada Koffi": "Com uma sonoridade que transita pela MPB, R&B e Afrobeat, a artista lançou, em 2026, seu primeiro álbum, Mar de Dentro.",
+    "Sabrina Lemos": "Sabrina Lemos é uma cantora, compositora, arranjadora, produtora musical, atriz e apresentadora paulista radicada em Vitória, no Espírito Santo." 
 };
 
 // --- FIM DO ACERVO ---
